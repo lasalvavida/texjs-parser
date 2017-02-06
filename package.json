@@ -1,6 +1,6 @@
 {
   "name": "texjs-parser",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Parses a TeX string and outputs the hierarchy of text and commands as JSON",
   "main": "lib/parseTex.js",
   "scripts": {
