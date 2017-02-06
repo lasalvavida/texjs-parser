@@ -1,6 +1,6 @@
 {
-  "name": "latex-json",
-  "version": "1.0.0",
+  "name": "texjs-parser",
+  "version": "0.5.0",
   "description": "Parses a LaTeX string and outputs the hierarchy of text and commands as JSON",
   "main": "lib/parseLatex.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lasalvavida/node-latex-json.git"
+    "url": "git+https://github.com/lasalvavida/texjs-parser"
   },
   "keywords": [
     "latex",
@@ -19,9 +19,9 @@
   "author": "Rob Taglang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lasalvavida/node-latex-json/issues"
+    "url": "https://github.com/lasalvavida/texjs-parser/issues"
   },
-  "homepage": "https://github.com/lasalvavida/node-latex-json#readme",
+  "homepage": "https://github.com/lasalvavida/texjs-parser#readme",
   "devDependencies": {
     "babel-core": "^6.22.1",
     "babel-preset-es2015": "^6.22.0",
