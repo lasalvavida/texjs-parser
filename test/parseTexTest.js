@@ -1,9 +1,9 @@
 import {expect} from 'chai'
-import parseLatex from '../lib/parseLatex'
+import parseTex from '../lib/parseTex'
 
-describe('parseLatex', function () {
+describe('parseTex', function () {
   it('can parse a latex command', function () {
-    var environment = parseLatex('\\documentclass[12pt]{article}')
+    var environment = parseTex('\\documentclass[12pt]{article}')
     expect(environment).to.deep.equal([
       {
         name: 'documentclass',
@@ -22,7 +22,7 @@ describe('parseLatex', function () {
   })
 
   it('can parse two latex commands', function () {
-    var environment = parseLatex('\\documentclass[12pt]{article}\n' +
+    var environment = parseTex('\\documentclass[12pt]{article}\n' +
       '\\usepackage{amsmath}')
     expect(environment).to.deep.equal([
       {
@@ -51,7 +51,7 @@ describe('parseLatex', function () {
   })
 
   it('can parse latex commands with text', function () {
-    var environment = parseLatex('\\maketitle\n' +
+    var environment = parseTex('\\maketitle\n' +
       '\\LaTeX{} was originally written in 1984 by Leslie Lamport and has become the dominant method for using \\TeX; ' +
       'few people write in plain \\TeX{} anymore.')
     expect(environment).to.deep.equal([
@@ -89,7 +89,7 @@ describe('parseLatex', function () {
   })
 
   it('can parse nested commands', function () {
-    var environment = parseLatex('\\title{\\LaTeX}')
+    var environment = parseTex('\\title{\\LaTeX}')
     expect(environment).to.deep.equal([
       {
         name: 'title',
@@ -111,7 +111,7 @@ describe('parseLatex', function () {
   })
 
   it('can parse environments', function () {
-    var environment = parseLatex('\\begin{document}\n' +
+    var environment = parseTex('\\begin{document}\n' +
         '    The current version is \\LaTeXe.' +
         '\\end{document}'
     )
@@ -133,7 +133,7 @@ describe('parseLatex', function () {
   })
 
   it('can parse nested environments', function () {
-    var environment = parseLatex('\\begin{document}\n' +
+    var environment = parseTex('\\begin{document}\n' +
         '  \\begin{align}\n' +
         '    E_0 &= mc^2\n' +
         '    \\\\\n' +
