@@ -1,7 +1,7 @@
 {
   "name": "texjs-parser",
-  "version": "0.5.0",
-  "description": "Parses a LaTeX string and outputs the hierarchy of text and commands as JSON",
+  "version": "0.6.0",
+  "description": "Parses a TeX string and outputs the hierarchy of text and commands as JSON",
   "main": "lib/parseLatex.js",
   "scripts": {
     "lint": "eslint lib/*.js test/*.js",
