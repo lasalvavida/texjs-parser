@@ -125,6 +125,71 @@ describe('parseLatex', function () {
             name: 'LaTeXe',
             type: 'command',
             arguments: []
+          },
+          '.'
+        ]
+      }
+    ])
+  })
+
+  it('can parse nested environments', function () {
+    var environment = parseLatex('\\begin{document}\n' +
+        '  \\begin{align}\n' +
+        '    E_0 &= mc^2\n' +
+        '    \\\\\n' +
+        '    E &= \\frac{mc^2}{\\sqrt{1 - \\frac{v^2}{c^2}}}\n' +
+        '  \\end{align}\n' +
+        '\\end{document}')
+    expect(environment).to.deep.equal([
+      {
+        name: 'document',
+        type: 'environment',
+        arguments: [],
+        children: [
+          {
+            name: 'align',
+            type: 'environment',
+            arguments: [],
+            children: [
+              'E_0 &= mc^2\\\\E &= ', {
+                name: 'frac',
+                type: 'command',
+                arguments: [
+                  {
+                    value: 'mc^2',
+                    optional: false
+                  }, {
+                    value: [
+                      {
+                        name: 'sqrt',
+                        type: 'command',
+                        arguments: [
+                          {
+                            value: [
+                              '1 - ', {
+                                name: 'frac',
+                                type: 'command',
+                                arguments: [
+                                  {
+                                    value: 'v^2',
+                                    optional: false
+                                  }, {
+                                    value: 'c^2',
+                                    optional: false
+                                  }
+                                ]
+                              }
+                            ],
+                            optional: false
+                          }
+                        ]
+                      }
+                    ],
+                    optional: false
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
