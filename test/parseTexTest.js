@@ -195,4 +195,62 @@ describe('parseTex', function () {
       }
     ])
   })
+
+  it('separates commands into environments properly', function () {
+    var environment = parseTex('\\begin{document}\n' +
+      '\\section{one}\n' +
+      '\\begin{math}\n' +
+      'x = \\frac{a}{b+1}\n' +
+      '\\end{math}\n' +
+      '\\section{two}\n' +
+      '\\end{document}')
+    expect(environment).to.deep.equal([
+      {
+        name: 'document',
+        type: 'environment',
+        arguments: [],
+        children: [
+          {
+            name: 'section',
+            type: 'command',
+            arguments: [
+              {
+                value: 'one',
+                optional: false
+              }
+            ]
+          }, {
+            name: 'math',
+            type: 'environment',
+            arguments: [],
+            children: [
+              'x = ',
+              {
+                name: 'frac',
+                type: 'command',
+                arguments: [
+                  {
+                    value: 'a',
+                    optional: false
+                  }, {
+                    value: 'b+1',
+                    optional: false
+                  }
+                ]
+              }
+            ]
+          }, {
+            name: 'section',
+            type: 'command',
+            arguments: [
+              {
+                value: 'two',
+                optional: false
+              }
+            ]
+          }
+        ]
+      }
+    ])
+  })
 })
