@@ -253,4 +253,37 @@ describe('parseTex', function () {
       }
     ])
   })
+
+  it('ends commands at invalid name characters', function() {
+    var environment = parseTex('\\alpha_2^2')
+    expect(environment).to.deep.equal([
+      {
+        name: 'alpha',
+        type: 'command',
+        arguments: []
+      },
+      '_2^2'
+    ])
+  })
+
+  it('doesn\t grab spaces after command without arguments', function() {
+    var environment = parseTex('\\begin{math}\n' +
+      '\\Rightarrow x\n' +
+      '\\end{math}')
+    expect(environment).to.deep.equal([
+      {
+        name: 'math',
+        type: 'environment',
+        arguments: [],
+        children: [
+          {
+            name: 'Rightarrow',
+            type: 'command',
+            arguments: []
+          },
+          'x'
+        ]
+      }
+    ])
+  })
 })
